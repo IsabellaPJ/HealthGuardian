@@ -153,39 +153,82 @@ def about():
 def team():
     return render_template('team.html')
 
+
+
+# Hardcoded appointment data
+appointments = [
+    {"drid": 1, "drname": "Dr. Smith", "dremail": "smith@hospital.com", "Specialist": "Cardiologist", "drstatus": "Available", "booking_status": "Not Booked"},
+    {"drid": 2, "drname": "Dr. Johnson", "dremail": "johnson@hospital.com", "Specialist": "Dermatologist", "drstatus": "Available", "booking_status": "Not Booked"},
+    {"drid": 3, "drname": "Dr. Lee", "dremail": "lee@hospital.com", "Specialist": "Neurologist", "drstatus": "Not Available", "booking_status": "Booked"},
+    {"drid": 4, "drname": "Dr. Allen", "dremail": "allen@hospital.com", "Specialist": "Pediatrician", "drstatus": "Available", "booking_status": "Not Booked"}
+]
+
 @app.route('/appointment', methods=['GET'])
 def appointment():
-    cursor.execute("SELECT * from appointment")
-    result = cursor.fetchall()
-    return render_template('appointment.html', info_table=result)
+    return render_template('appointment.html', info_table=appointments)
 
-@app.route('/appoint', methods=['GET','POST'])
+@app.route('/appoint', methods=['GET', 'POST'])
 def appoint():
-    msg=''
+    msg = ''
     if request.method == 'POST':
         full_name = request.form['name']
-        user_email=request.form['email']
-        user_phone=request.form['phone']
-        user_date=request.form['date']
-        user_time=request.form['time']
-        user_special=request.form['specialization']
-        sql1 = "SELECT * FROM appointment WHERE Specialist = %s AND drstatus = 'Available' AND booking_status='Not Booked'"
-        val1 = (user_special,)
-        cursor.execute(sql1,val1)
-        result1=cursor.fetchone()
-        if result1:
-            drid=result1[0]
-            sql = "INSERT INTO patient (name, email,phone_no,appoint_date,appoint_time,drid) VALUES (%s, %s, %s, %s, %s, %s)"
-            val = (full_name, user_email, user_phone, user_date, user_time, drid)
-            cursor.execute(sql, val)
-            sql2 = "UPDATE appointment SET booking_status = 'Booked' WHERE drid = %s"
-            val2=(drid,)
-            cursor.execute(sql2,val2)
-            connection.commit()
-            msg='Your appointment has been booked!!!! Will send the meet link through mail!!!'
+        user_email = request.form['email']
+        user_phone = request.form['phone']
+        user_date = request.form['date']
+        user_time = request.form['time']
+        user_special = request.form['specialization']
+
+        # Find a doctor with the specified specialization who is available and not booked
+        available_doctor = None
+        for doctor in appointments:
+            if doctor["Specialist"] == user_special and doctor["drstatus"] == "Available" and doctor["booking_status"] == "Not Booked":
+                available_doctor = doctor
+                break
+
+        if available_doctor:
+            drid = available_doctor["drid"]
+            # Simulate booking logic by updating the hardcoded list (in memory)
+            available_doctor["booking_status"] = "Booked"
+            msg = 'Your appointment has been booked with {}! We will send the meet link through email.'.format(available_doctor["drname"])
         else:
-            msg='Now, the doctor is not available!!!! Can meet General Doctor for instant relief!!!'
+            msg = 'Now, the doctor is not available! You can meet a General Doctor for instant relief!'
+
     return render_template('response.html', msg=msg)
+
+
+# @app.route('/appointment', methods=['GET'])
+# def appointment():
+#     cursor.execute("SELECT * from appointment")
+#     result = cursor.fetchall()
+#     return render_template('appointment.html', info_table=result)
+
+# @app.route('/appoint', methods=['GET','POST'])
+# def appoint():
+#     msg=''
+#     if request.method == 'POST':
+#         full_name = request.form['name']
+#         user_email=request.form['email']
+#         user_phone=request.form['phone']
+#         user_date=request.form['date']
+#         user_time=request.form['time']
+#         user_special=request.form['specialization']
+#         sql1 = "SELECT * FROM appointment WHERE Specialist = %s AND drstatus = 'Available' AND booking_status='Not Booked'"
+#         val1 = (user_special,)
+#         cursor.execute(sql1,val1)
+#         result1=cursor.fetchone()
+#         if result1:
+#             drid=result1[0]
+#             sql = "INSERT INTO patient (name, email,phone_no,appoint_date,appoint_time,drid) VALUES (%s, %s, %s, %s, %s, %s)"
+#             val = (full_name, user_email, user_phone, user_date, user_time, drid)
+#             cursor.execute(sql, val)
+#             sql2 = "UPDATE appointment SET booking_status = 'Booked' WHERE drid = %s"
+#             val2=(drid,)
+#             cursor.execute(sql2,val2)
+#             connection.commit()
+#             msg='Your appointment has been booked!!!! Will send the meet link through mail!!!'
+#         else:
+#             msg='Now, the doctor is not available!!!! Can meet General Doctor for instant relief!!!'
+#     return render_template('response.html', msg=msg)
 
 @app.route('/chat')
 def chat():
@@ -292,5 +335,4 @@ def prediction():
     return jsonify({"disease": disease, "advice": advice})
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0', port = 5000, debug=True)
-
+    app.run(host='0.0.0.0', port = 5000, debug=True)
