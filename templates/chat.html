@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>HealthBot</title>
+     <link rel="stylesheet" href="{{url_for('static', filename='chat.css')}}">
+     <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">    
+</head>
+<body>
+    <div class="chatBot">
+        <header>
+            <h2>HealthBot</h2>
+            <span alt="Close" id="cross" onclick="cancel()">X</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat-incoming chat">
+                <p></p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea rows="0" cols="17" placeholder="Enter a message..."></textarea>
+            <button id="sendBTN">Send</button>
+        </div>
+    </div>
+    <script>
+        const chatInput = document.querySelector('.chat-input textarea');
+        const sendChatBtn = document.querySelector('.chat-input button');
+        const chatbox = document.querySelector(".chatbox");
+    
+        let userMessage;
+        let userName = "";
+        let symptomsProcessed = false;
+        let awaitingHospitalResponse = false;
+    
+        const API_KEY = "YOUR_API_KEY_HERE";
+        const greeting = ["hello!",'hello', 'hii !', 'hi', "hi there!",  "hi there!", "heyy", 'good morning', 'good afternoon', 'good evening',
+        "hey", "how are you", "how are you?", "how is it going", "how is it going?",
+        "what's up?", "how are you?",
+        "hey, how are you?", "what is popping",
+        "good to see you!", "howdy!",
+        "hi, nice to meet you.", "hiya!",
+        "hi", "hi, what's new?",
+        "hey, how's your day?", "hi, how have you been?", "greetings",
+        ];
+        const responses = [
+        "Thank you for using our medical chatbot. Please provide the symptoms you're experiencing, and I'll do my best to predict the possible disease.",
+        "Hello! I'm here to help you with medical predictions based on your symptoms. Please describe your symptoms in as much detail as possible.",
+        "Greetings! I am a specialized medical chatbot trained to predict potential diseases based on the symptoms you provide. Kindly list your symptoms explicitly.",
+        "Welcome to the medical chatbot. To assist you accurately, please share your symptoms in explicit detail.",
+        "Hi there! I'm a medical chatbot specialized in analyzing symptoms to suggest possible diseases. Please provide your symptoms explicitly.",
+        "Hey! I'm your medical chatbot. Describe your symptoms with as much detail as you can, and I'll generate potential disease predictions.",
+        "How can I assist you today? I'm a medical chatbot trained to predict diseases based on symptoms. Please be explicit while describing your symptoms.",
+        "Hello! I'm a medical chatbot capable of predicting diseases based on the symptoms you provide. Your explicit symptom description will help me assist you better.",
+        "Greetings! I'm here to help with medical predictions. Describe your symptoms explicitly, and I'll offer insights into potential diseases.",
+        "Hi, I'm the medical chatbot. I've been trained to predict diseases from symptoms. The more explicit you are about your symptoms, the better I can assist you.",
+        "Hi, I specialize in medical predictions based on symptoms. Kindly provide detailed symptoms for accurate disease predictions.",
+        "Hello! I'm a medical chatbot with expertise in predicting diseases from symptoms. Please describe your symptoms explicitly to receive accurate insights.",
+        ]
+        const goodbyes = [
+        "farewell!",'bye', 'goodbye','good-bye', 'good bye', 'bye', 'thank you', 'later', "take care!",
+        "see you later!", 'see you', 'see ya', 'see-you', 'thanks', 'thank', 'bye bye', 'byebye',
+        "catch you on the flip side!", "adios!",
+        "goodbye for now!", "till we meet again!",
+        "so long!", "hasta la vista!",
+        "bye-bye!", "keep in touch!",
+        "toodles!", "ciao!",
+        "later, gator!", "stay safe and goodbye!",
+        "peace out!", "until next time!", "off I go!",
+        ];
+        const goodbyeMessages = [
+        "Take care of yourself! If you have more questions, don't hesitate to reach out.",
+        "Stay well! Remember, I'm here if you need further medical advice.",
+        "Goodbye for now! Don't hesitate to return if you need more information in the future.",
+        "Wishing you good health ahead! Feel free to come back if you have more concerns.",
+        "Farewell! If you have more symptoms or questions, don't hesitate to consult again.",
+        "Take care and stay informed about your health. Feel free to chat anytime.",
+        "Bye for now! Remember, your well-being is a priority. Don't hesitate to ask if needed.",
+        "Have a great day ahead! If you need medical guidance later on, I'll be here.",
+        "Stay well and take it easy! Reach out if you need more medical insights.",
+        "Until next time! Prioritize your health and reach out if you need assistance.",
+        "Goodbye! Your health matters. Feel free to return if you have more health-related queries.",
+        "Stay healthy and stay curious about your health! If you need more info, just ask.",
+        "Wishing you wellness on your journey! If you have more questions, I'm here to help.",
+        "Take care and remember, your health is important. Don't hesitate to reach out if needed.",
+        "Goodbye for now! Stay informed and feel free to consult if you require medical advice.",
+        "Stay well and stay proactive about your health! If you have more queries, feel free to ask.",
+        "Farewell! Remember, I'm here whenever you need reliable medical information.",
+        "Bye for now! Stay vigilant about your health and don't hesitate to return if necessary.",
+        "Take care and keep your well-being a priority! Reach out if you have more health questions.",
+        "Wishing you good health ahead! Don't hesitate to chat if you need medical insights.",
+        "Goodbye! Stay well and remember, I'm here to assist you with medical queries.",
+        ];
+        const createChatLi = (message, className, isBot = false) => {
+            const chatLi = document.createElement("li");
+            chatLi.classList.add("chat", className);
+            let chatContent = isBot ? 
+                `<img src="{{url_for('static', filename='bot_icon.png')}}" alt="Bot Icon" class="bot-icon" width="25px" height="25px"><p>${message}</p>` 
+                : `<p>${message}</p>`;
+            chatLi.innerHTML = chatContent;
+            return chatLi;
+        };
+        const handleChat = () => {
+            userMessage = chatInput.value.trim().toLowerCase();
+            if (!userMessage) return;
+            chatbox.appendChild(createChatLi(userMessage, "chat-outgoing"));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            if (greeting.some(g => userMessage.includes(g))) {
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                chatbox.appendChild(createChatLi(randomResponse, "chat-incoming", true));
+                chatInput.value = "";
+                return;
+            }
+            if (goodbyes.includes(userMessage)) {
+                const finalMessage = goodbyeMessages[Math.floor(Math.random() * goodbyeMessages.length)];
+                chatbox.appendChild(createChatLi(finalMessage, "chat-incoming", true));
+                chatInput.value = "";
+                return;
+            }
+            if (awaitingHospitalResponse) {
+                if (userMessage === "yes" || userMessage === "yeah" || userMessage === "sure") {
+                    const hospitalMessage = "Fetching nearby hospitals...";
+                    chatbox.appendChild(createChatLi(hospitalMessage, "chat-incoming", true));
+                    getLocation();
+                } else {
+                    chatbox.appendChild(createChatLi("Okay, take care!", "chat-incoming", true));
+                }
+                awaitingHospitalResponse = false;
+                chatInput.value = "";
+                return;
+            }
+            if (!symptomsProcessed) {
+                const incomingChatLi = createChatLi("Processing your symptoms...", "chat-incoming", true);
+                chatbox.appendChild(incomingChatLi);
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+                fetch('/prediction', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ symptoms: userMessage })  
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const diseasePred = data.disease;  
+                    const diseaseAdvice = data.advice;  
+                    const botResponse = `Based on your symptoms, I believe you may have ${diseasePred}. I advise you to ${diseaseAdvice}. Do you want to find nearby hospitals?`;
+                    incomingChatLi.querySelector("p").textContent = botResponse;
+                    awaitingHospitalResponse = true;
+                    symptomsProcessed = true;
+                    chatInput.value = "";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    incomingChatLi.querySelector("p").textContent = "Sorry, something went wrong while processing your symptoms.";
+                });
+            }
+        };
+        sendChatBtn.addEventListener("click", handleChat);
+        function cancel() {
+            window.location.href = "{{ url_for('homepage') }}";
+        }
+        function getNearbyHospitals(lat, lng) {
+            const url = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=hospital](around:5000,${lat},${lng});out;`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const hospitals = data.elements.slice(0, 3);
+                    let hospitalList = hospitals.length > 0 ? '' : 'No hospitals found nearby.';
+                    hospitals.forEach((hospital, index) => {
+                        const hospitalName = hospital.tags.name || 'Unnamed Hospital';
+                        const hospitalLocation = `Lat: ${hospital.lat}, Lng: ${hospital.lon}`;
+                        if (!hospitalName.toLowerCase().includes('dental')) {
+                            hospitalList += `<li>${hospitalName} (${hospitalLocation})</li>`;
+                        }
+                    });
+                    const hospitalMessage = `Here are the top hospitals near you:<ul id="hospital-list">${hospitalList}</ul>`;
+                    chatbox.appendChild(createChatLi(hospitalMessage, "chat-incoming", true));
+                    chatbox.scrollTo(0, chatbox.scrollHeight);
+                })
+                .catch(error => console.error('Error fetching hospitals:', error));
+        }
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    getNearbyHospitals(lat, lng);
+                }, () => {
+                    alert('Geolocation failed!');
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        }
+    </script>
+</body>
+</html>
+
+

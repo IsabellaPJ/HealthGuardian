@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='homepage.css')}}">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <div class="box2">
+                    <div class="navbar">
+                         <a href="/login">LogOut</a>
+                         <a href="/diabetes">DiabetesPredictor</a>
+                         <a href="/team">Our Team</a>
+                         <a href="/appointment">Appointment</a>
+                         <a href="/about">About</a>
+                         <a href="/homepage">Home</a>
+                         <a href="#" class="heading">HealthGuardian</a>
+                         <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+                         </div>
+                    <hr class="new5">
+                    <img src="{{url_for('static', filename='home.png')}}"  style="float: left; margin-top: 50px; margin-left: 150px; margin-bottom: 50px;" width="600" height="500"></img>
+                    <p style="color: white; text-align: center; margin-top: 190px; margin-right: 100px; margin-left: 900px; font-size: 50px; font-weight: bold;">Hi {{content}}!!!!!</p>
+                    <p style="color: white; text-align: center; margin-top: 50px; margin-right: 100px; margin-left: 900px; ">Your health, just a click away. Consult with top doctors online today—expert advice, personalized care, anytime, anywhere.</p>
+                    <a href="/appointment" class="button">Book Now</a>
+                    <br><br><br><br><a href="/chat"><img src="{{url_for('static', filename='chatbotimage.png')}}" width="75" height="75" style="float: right; margin-right: 50px"></a>
+               </div>
+          </div>
+          <script>
+               var msg = "{{ msg }}";
+               if (msg) {
+                   alert(msg);
+               }
+           </script>
+     </body>
+</html>

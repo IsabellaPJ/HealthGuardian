@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='about.css')}}">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <div class="box2">
+                    <div class="navbar">
+                         <a href="/login">LogOut</a>
+                         <a href="/diabetes">DiabetesPredictor</a>
+                         <a href="/team">Our Team</a>
+                         <a href="/appointment">Appointment</a>
+                         <a href="/about">About</a>
+                         <a href="/homepage">Home</a>
+                         <a href="#" class="heading">HealthGuardian</a>
+                         <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+                    </div>
+                    <hr class="new5">
+                    <img src="{{url_for('static', filename='logo.png')}}" width="230" height="230" style="float: left; margin-top: 110px; margin-left: 300px; border-radius: 50%;">
+                    <div style="margin-top: 100px; margin-right: 150px; margin-left:600px; text-align:center; color: white; border-bottom: 5px solid white; font-size: 40px; font-weight: bold;"><p>About HealthGuardian</p></div>
+                    <!-- <img src="{{url_for('static', filename='logo.png')}}" width="230" height="230" style="float: left; border-radius: 50%; margin-left: 500px;"> -->
+                    <p style="color: white; margin-top: 30px; margin-right: 150px; margin-left:600px;">At HealthGuardian, our mission is to make healthcare accessible, understandable, and user-friendly. We’ve developed an AI-powered chatbot to bridge the gap between you and the healthcare you need. Whether it's answering questions about symptoms, providing reliable health advice, or helping you manage your wellness routine, our chatbot is here to assist you every step of the way.</p>
+                    
+                    <img src="{{url_for('static', filename='vision.png')}}" width="300" height="300" style="float: right; margin-top: 120px; margin-right: 225px; border-radius: 50%;">
+                    <div style="margin-top: 100px; margin-right: 600px; text-align:center; margin-left: 150px; color: white; border-bottom: 5px solid white; font-size: 40px; font-weight: bold;"><p>Vision and Mission</p></div>
+                    <p style="color: white; margin-top: 30px; margin-right: 600px; margin-left:150px;">At HealthGuardian, our vision is to revolutionize healthcare by making it universally accessible, understandable, and user-friendly. We are dedicated to bridging the gap between individuals and the healthcare they need through innovative AI-powered solutions. Our mission is to empower people to take control of their health with confidence and ease. Whether it's answering questions about symptoms, providing reliable health advice, or managing wellness routines, our chatbot is here to assist every step of the way. In addition, we offer online virtual consultations with doctors and a seamless appointment booking service, ensuring that professional healthcare is always within reach.</p>
+                    
+                    <div style="margin-top: 100px; margin-right: 150px; text-align:center; margin-left: 150px; color: white; border-bottom: 5px solid white; font-size: 40px; font-weight: bold;"><p>Why choose Us?</p></div>
+                    <table style="margin-top: 30px; margin-right: 190px; text-align:center; margin-left: 190px; width: 75%; color: white">
+                         <tr>
+                              <th style="border-right: 3px solid white;"><img src="{{url_for('static', filename='24.png')}}" width="200" height="200" style="border-radius: 50%;"></th>
+                              <th style="border-right: 3px solid white;"><img src="{{url_for('static', filename='ai.png')}}" width="200" height="200" style="border-radius: 50%;"></th>
+                              <th><img src="{{url_for('static', filename='chatbot.png')}}" width="200" height="200" style="border-radius: 50%;"></th>
+                         </tr>
+                         <tr>
+                              <th style="border-right: 3px solid white;">24/7 Availability</th>
+                              <th style="border-right: 3px solid white;">AI-Driven</th>
+                              <th>Smart Chatbot</th>
+                         </tr>
+                         <tr>
+                              <td style="border-bottom: 3px solid white; border-right: 3px solid white;">Access healthcare advice and services anytime, anywhere.</td>
+                              <td style="border-bottom: 3px solid white; border-right: 3px solid white;">Get accurate and reliable information tailored to your needs.</td>
+                              <td style="border-bottom: 3px solid white;">Receive instant responses and personalized support for your health-related queries.</td>
+                         </tr>
+                         <tr>
+                              <th style="border-right: 3px solid white;"><img src="{{url_for('static', filename='consultation.png')}}" width="200" height="200" style="border-radius: 50%;"></th>
+                              <th style="border-right: 3px solid white;"><img src="{{url_for('static', filename='appointment.png')}}" width="200" height="200" style="border-radius: 50%;"></th>
+                              <th><img src="{{url_for('static', filename='friendly.png')}}" width="200" height="200" style="border-radius: 50%;"></th>
+                         </tr>
+                         <tr>
+                              <th style="border-right: 3px solid white;">Virtual Consultations</th>
+                              <th style="border-right: 3px solid white;">Easy Appointment Booking</th>
+                              <th>User-Friendly Platform</th>
+                         </tr>
+                         <tr>
+                              <td style="border-right: 3px solid white;">Speak with qualified doctors from the comfort of your home.</td>
+                              <td style="border-right: 3px solid white;">Schedule appointments with ease, saving you time.</td>
+                              <td >Navigate your healthcare journey with clear, intuitive guidance.</td>
+                         </tr>
+                    </table>
+               </div>
+          </div>
+     </body>
+</html>

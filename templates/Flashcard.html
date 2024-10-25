@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HealthGuardian Flashcards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='diabetes.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/icon type" />
+    <style>
+      .flashcard {
+        display: none;
+      }
+      .flashcard.active {
+        display: block;
+      }
+      .container {
+        text-align: center;
+        padding: 20px;
+      }
+      .form-row {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="borderLine"></span>
+      <div class="box2">
+           <div class="navbar">
+                <a href="/login">LogOut</a>
+                <a href="/diabetes">DiabetesPredictor</a>
+                <a href="/team">Our Team</a>
+                <a href="/appointment">Appointment</a>
+                <a href="/about">About</a>
+                <a href="/homepage">Home</a>
+                <a href="#" class="heading">HealthGuardian</a>
+                <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+           </div>
+           <hr class="new5">
+
+    <div class="container">
+      <h1>HealthGuardian Diabetes Risk Predictor</h1>
+      <form id="flashcard-form" action="/diabetes" method="post">
+        <!-- Flashcard 1 -->
+        <div class="flashcard active">
+          <div class="form-row">
+            <label for="age">Age</label>
+            <input type="text" name="age" required />
+          </div>
+        </div>
+
+        <!-- Flashcard 2 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="sex">Sex</label>
+            <select id="sex" name="sex" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Flashcard 3 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="polyuria">Polyuria</label>
+            <select id="polyuria" name="polyuria" required>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Flashcard 4 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="polydipsia">polydipsia</label>
+              <select id="polydipsia" name="polydipsia" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 5 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="swl">swl</label>
+              <select id="swl" name="swl" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 6 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="weakness">weakness</label>
+              <select id="weakness" name="weakness" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 7 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="polyphagia">polyphagia</label>
+              <select id="polyphagia" name="polyphagia" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 8 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="gt">gt</label>
+              <select id="gt" name="gt" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 9 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="vb">vb</label>
+              <select id="vb" name="vb" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 10 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="itching">itching</label>
+              <select id="itching" name="itching" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 11 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="irritability">irritability</label>
+              <select id="irritability" name="irritability" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 12 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="dh">dh</label>
+              <select id="dh" name="dh" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+        
+          <!-- Flashcard 13 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="pp">pp</label>
+              <select id="pp" name="pp" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 14 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="ms">ms</label>
+              <select id="ms" name="ms" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 15 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="alopecia">alopecia</label>
+              <select id="alopecia" name="alopecia" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Flashcard 16 -->
+        <div class="flashcard">
+            <div class="form-row">
+              <label for="obesity">obesity</label>
+              <select id="obesity" name="obesity" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+        <!-- Navigation Buttons -->
+        <div class="form-row">
+          <button type="button" id="prev-btn" onclick="showPrevFlashcard()">Previous</button>
+          <button type="button" id="next-btn" onclick="showNextFlashcard()">Next</button>
+          <input type="submit" value="Submit" style="display: none;" id="submit-btn" />
+        </div>
+      </form>
+    </div>
+  </div></div>
+
+    <script>
+      let currentFlashcard = 0;
+      const flashcards = document.querySelectorAll('.flashcard');
+      const nextBtn = document.getElementById('next-btn');
+      const prevBtn = document.getElementById('prev-btn');
+      const submitBtn = document.getElementById('submit-btn');
+
+      function showNextFlashcard() {
+        if (currentFlashcard < flashcards.length - 1) {
+          flashcards[currentFlashcard].classList.remove('active');
+          currentFlashcard++;
+          flashcards[currentFlashcard].classList.add('active');
+        }
+        updateButtons();
+      }
+
+      function showPrevFlashcard() {
+        if (currentFlashcard > 0) {
+          flashcards[currentFlashcard].classList.remove('active');
+          currentFlashcard--;
+          flashcards[currentFlashcard].classList.add('active');
+        }
+        updateButtons();
+      }
+
+      function updateButtons() {
+        prevBtn.style.display = currentFlashcard === 0 ? 'none' : 'inline';
+        nextBtn.style.display = currentFlashcard === flashcards.length - 1 ? 'none' : 'inline';
+        submitBtn.style.display = currentFlashcard === flashcards.length - 1 ? 'inline' : 'none';
+      }
+
+      updateButtons(); // Initialize button states
+    </script>
+  </body>
+</html>

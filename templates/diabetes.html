@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HealthGuardian</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='diabetes.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/icon type" />
+    <style>
+      input[type="radio"]{
+        display: inline-block;
+        color: #ff2770;
+        margin-bottom: 15px;
+      }
+            /* [type="radio"]:checked,
+      [type="radio"]:not(:checked) {
+          position: absolute;
+          left: -9999px;
+      }
+      [type="radio"]:checked + label,
+      [type="radio"]:not(:checked) + label
+      {
+          position: relative;
+          padding-left: 28px;
+          cursor: pointer;
+          line-height: 20px;
+          display: inline-block;
+          color: #666;
+      }
+      [type="radio"]:checked + label:before,
+      [type="radio"]:not(:checked) + label:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 18px;
+          height: 18px;
+          border: 1px solid #ddd;
+          border-radius: 100%;
+          background: #fff;
+      }
+      [type="radio"]:checked + label:after,
+      [type="radio"]:not(:checked) + label:after {
+          content: '';
+          width: 12px;
+          height: 12px;
+          background: #F87DA9;
+          position: absolute;
+          top: 4px;
+          left: 4px;
+          border-radius: 100%;
+          -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+      }
+      [type="radio"]:not(:checked) + label:after {
+          opacity: 0;
+          -webkit-transform: scale(0);
+          transform: scale(0);
+      }
+      [type="radio"]:checked + label:after {
+          opacity: 1;
+          -webkit-transform: scale(1);
+          transform: scale(1);
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="borderLine"></span>
+      <div class="box2">
+           <div class="navbar">
+                <a href="/login">LogOut</a>
+                <a href="/diabetes">DiabetesPredictor</a>
+                <a href="/team">Our Team</a>
+                <a href="/appointment">Appointment</a>
+                <a href="/about">About</a>
+                <a href="/homepage">Home</a>
+                <a href="#" class="heading">HealthGuardian</a>
+                <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+           </div>
+           <hr class="new5">
+    <div class="container">
+      <h1 style="text-align: center;">HealthGuardian</h1>
+      <h1 style="text-align: center;">Diabetes Risk Predictor</h1>
+      <form id="flashcard-form" action="/diabetes" method="post">
+
+        <!-- Flashcard 1 -->
+        <div class="flashcard active">
+          <div class="form-row">
+            <label for="age">Enter Your Age</label><input type="text" name="age" required />
+          </div>
+        </div>
+
+        <!-- Flashcard 2 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="sex">Sex</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="male" name="sex" value="Male" checked required>
+                <label for="male">Male</label>
+              </div>
+              <div>
+                <input type="radio" id="female" name="sex" value="Female">
+                <label for="female">Female</label>
+              </div>
+            </div>
+          </div>
+        </div>        
+
+        <!-- Flashcard 3 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="polyuria">Polyuria<br>(Do you frequently urinate?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="polyuria" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="polyuria" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 4 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="polydipsia">Polydipsia<br>(Do you experience excessive thirst?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="polydipsia" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="polydipsia" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 5 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="swl">Sudden Weight Loss</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="swl" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="swl" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 6 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="weakness">Weakness<br>(Do you feel tired unusually?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="weakness" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="weakness" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 7 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="polyphagia">Polyphagia<br>(Do you experience extreme hunger?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="polyphagia" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="polyphagia" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 8 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="gt">Genital Thrush<br>(Do you experience itching and <br>discomfort in genital areas?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="gt" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="gt" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 9 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="vb">Visual Blurring<br>(Do you have difficulty in seeing clearing?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="vb" value="Yes" checked  required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="vb" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 10 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="itching">Itching<br>(Do you have an uncomfortable <br> sensation on the skin?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="itching" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="itching" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 11 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="irritability">Irritability<br>(Are you feeling easily <br>annoyed or angered?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="irritability" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="irritability" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 12 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="dh">Delayed Healing<br>(Do your wounds take longer <br> than usual time to heal?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="dh" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="dh" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+        
+          <!-- Flashcard 13 -->
+          <div class="flashcard">
+            <div class="form-row">
+              <label for="pp">Partial Paresis<br>(Do you have weakness in muscles?)</label>
+              <div class="radio-container">
+                <div>
+                  <input type="radio" id="Yes" name="pp" value="Yes" checked required>
+                  <label for="Yes">Yes</label>
+                </div>
+                <div>
+                  <input type="radio" id="No" name="pp" value="No">
+                  <label for="No">No</label>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+        <!-- Flashcard 14 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="ms">Muscle Stiffness<br>(Do you have difficulty in <br>moving muscles easily?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="ms" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="ms" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 15 -->
+        <div class="flashcard">
+          <div class="form-row">
+            <label for="alopecia">Alopecia<br>(Do you have balness or hair loss?)</label>
+            <div class="radio-container">
+              <div>
+                <input type="radio" id="Yes" name="alopecia" value="Yes" checked required>
+                <label for="Yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="No" name="alopecia" value="No">
+                <label for="No">No</label>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <!-- Flashcard 16 -->
+          <div class="flashcard">
+            <div class="form-row">
+              <label for="obesity">Obesity<br>(Do you have excessive body fat?)</label>
+              <div class="radio-container">
+                <div>
+                  <input type="radio" id="Yes" name="obesity" value="Yes" checked required>
+                  <label for="Yes">Yes</label>
+                </div>
+                <div>
+                  <input type="radio" id="No" name="obesity" value="No">
+                  <label for="No">No</label>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+        <!-- Navigation Buttons -->
+        <div class="form-row">
+          <button type="button" id="prev-btn" style="margin-left: 50px; width: 100px; height: 50px; border-radius: 4px; font-size: 1em; margin-top: 30px; font-weight: 600;" onclick="showPrevFlashcard()">Previous</button>
+          <button type="button" id="next-btn" style="margin-left: 100px; width: 100px; height: 50px; border-radius: 4px; font-size: 1em; margin-top: 30px; font-weight: 600;" onclick="showNextFlashcard()">Next</button>
+          <input type="submit" value="Submit" style="display: none; margin-left: 50px; width: 100px; height: 50px; border-radius: 4px; font-size: 1em; margin-top: 30px; font-weight: 600;" id="submit-btn" />
+        </div>
+      </form>
+    </div>
+  </div></div>
+
+    <script>
+      let currentFlashcard = 0;
+      const flashcards = document.querySelectorAll('.flashcard');
+      const nextBtn = document.getElementById('next-btn');
+      const prevBtn = document.getElementById('prev-btn');
+      const submitBtn = document.getElementById('submit-btn');
+
+      function showNextFlashcard() {
+        if (currentFlashcard < flashcards.length - 1) {
+          flashcards[currentFlashcard].classList.remove('active');
+          currentFlashcard++;
+          flashcards[currentFlashcard].classList.add('active');
+        }
+        updateButtons();
+      }
+
+      function showPrevFlashcard() {
+        if (currentFlashcard > 0) {
+          flashcards[currentFlashcard].classList.remove('active');
+          currentFlashcard--;
+          flashcards[currentFlashcard].classList.add('active');
+        }
+        updateButtons();
+      }
+
+      function updateButtons() {
+        prevBtn.style.display = currentFlashcard === 0 ? 'none' : 'inline';
+        nextBtn.style.display = currentFlashcard === flashcards.length - 1 ? 'none' : 'inline';
+        submitBtn.style.display = currentFlashcard === flashcards.length - 1 ? 'inline' : 'none';
+      }
+
+      updateButtons(); // Initialize button states
+    </script>
+  </body>
+</html>

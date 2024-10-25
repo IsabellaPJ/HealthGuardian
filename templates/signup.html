@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='signup.css')}}">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <form id="Register" action="/signup" method="post">
+                    <h2>HealthGuardian</h2>
+                    <div id="signUpmessage" class="messageDiv" style="display:none;"></div>
+                    <div class="inputBox">
+                         <input type="text" required="required" id="username" name="username" pattern=".{5,}" title="Five or more characters">
+                         <span>Username</span>
+                         <i></i>
+                    </div>
+                    <div class="inputBox">
+                         <input type="email" required="required" id="email" name="email" >
+                         <span>Email</span>
+                         <i></i>
+                    </div>
+                    <div class="inputBox">
+                         <input type="password" required="required" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
+                         <span>Password</span>
+                         <i></i>
+                    </div>
+                    <div class="inputBox">
+                         <input type="number" required="required" id="mobilenumber" name="mobilenumber">
+                         <span>Mobile Number</span>
+                         <i></i>
+                    </div>
+                    <input type="submit" value="Sign Up" id="signup">
+                    <hr style="margin-top: 30px">
+                    <i style="color: white; text-align: center;">Or</i>
+                    <hr>
+                    <b style="color: white; text-align: center; margin-top: 30px">Already Have An Account?</i>
+                    <div class="links">
+                         <a href="/login">Login</a>
+                    </div>
+               </form>
+          </div>
+          <script>
+               var msg = "{{ msg }}";
+               if (msg) {
+                   alert(msg);
+               }
+           </script>
+     </body>
+</html>

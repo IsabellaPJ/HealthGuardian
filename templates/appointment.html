@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='appointment.css')}}">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <div class="box2">
+                    <div class="navbar">
+                         <a href="/login">LogOut</a>
+                         <a href="/diabetes">DiabetesPredictor</a>
+                         <a href="/team">Our Team</a>
+                         <a href="/appointment">Appointment</a>
+                         <a href="/about">About</a>
+                         <a href="/homepage">Home</a>
+                         <a href="#" class="heading">HealthGuardian</a>
+                         <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+                    </div>
+                    <hr class="new5"><br><br>
+     <div class="container">
+          <div class="text">
+               HealthGuardian Appointment Booking
+          </div>
+          <form action="/appoint" method="post">
+               <div class="form-row">
+                    <div class="input-data">
+                         <input type="text" name="name" required>
+                         <div class="underline"></div>
+                         <label for="">Full Name</label>
+                      </div>
+                      <div class="input-data">
+                         <input type="email" name="email" required>
+                         <div class="underline"></div>
+                         <label for="">Email</label>
+                      </div>
+               </div>
+               <div class="form-row">
+                    <div class="input-data">
+                         <input type="text" name="phone" required>
+                         <div class="underline"></div>
+                         <label for="">Phone Number</label>
+                      </div>
+               </div>
+               <div class="form-row">
+                    <div class="input-data">
+                         <label for="">Booking Date & Time</label>
+                      </div>
+                    <div class="input-data">
+                         <input type="date" name="date" required>
+                         <div class="underline"></div>
+                      </div>
+                      <div class="input-data">
+                         <input type="time" name="time" required>
+                         <div class="underline"></div>
+                      </div>
+               </div>
+               <div class="form-row">
+                    <div class="input-data">
+                         <label for="specialization" style="margin-left: 100px;">Select Specialization</label>
+                         <select id="specialization" name="specialization" style="padding: 10px 50px; margin-left: 300px; border: none;font-size: 17px;border-bottom: 2px solid rgba(0,0,0, 0.12);">
+                              {% for item in info_table %}
+                                   <option value="{{item[3]}}">{{item[3]}}</option>
+                              {% endfor %}
+                         </select>
+                    </div>
+               </div>
+               <div class="form-row">
+               <div class="input-data textarea" style="margin-left: 270px;">
+                    <div class="form-row submit-btn">
+                         <div class="input-data">
+                              <div class="inner"></div>
+                              <input type="submit" value="Book Now">
+                         </div>
+                    </div>
+               </form>
+          </div>
+          </div></div>
+</body>
+</html>

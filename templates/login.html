@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <form action="/login" method="post">
+                    <h2>HealthGuardian</h2>
+                    <div class="inputBox">
+                         <input type="email" required="required" name="email">
+                         <span>Email</span>
+                         <i></i>
+                    </div>
+                    <div class="inputBox">
+                         <input type="password" required="required" name="password">
+                         <span>Password</span>
+                         <i></i>
+                    </div>
+                    <input type="submit" value="Login" id="login">
+                    <hr style="margin-top: 30px">
+                    <i style="color: white; text-align: center;">Or</i>
+                    <hr>
+                    <b style="color: white; text-align: center; margin-top: 30px">New To HealthGuidance?</i>
+                    <div class="links">
+                         <a href="/signup">Sign Up</a>
+                    </div>
+               </form>
+          </div>
+          <script>
+               var msg = "{{ msg }}";
+               if (msg) {
+                   alert(msg);
+               }
+           </script>
+     </body>
+</html>

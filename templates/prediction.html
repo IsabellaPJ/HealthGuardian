@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='prediction.css')}}">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <div class="box2">
+                    <div class="navbar">
+                         <a href="/login">LogOut</a>
+                         <a href="/diabetes">DiabetesPredictor</a>
+                         <a href="/team">Our Team</a>
+                         <a href="/appointment">Appointment</a>
+                         <a href="/about">About</a>
+                         <a href="/homepage">Home</a>
+                         <a href="#" class="heading">HealthGuardian</a>
+                         <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+                    </div>
+                    <hr class="new5">
+          <div class="container">
+               <div class="text">
+               {{msg}}
+               </div>
+               <a href="/appointment" class="button">Book Now</a>
+          </div>
+</body>
+</html>
+                    
+

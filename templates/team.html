@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <title>HealthGuardian</title>
+          <link rel="stylesheet" href="{{url_for('static', filename='team.css')}}">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+          <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/icon type">
+     </head>
+     <body>
+          <div class="box">
+               <span class="borderLine"></span>
+               <div class="box2">
+                    <div class="navbar">
+                         <a href="/login">LogOut</a>
+                         <a href="/diabetes">DiabetesPredictor</a>
+                         <a href="/team">Our Team</a>
+                         <a href="/appointment">Appointment</a>
+                         <a href="/about">About</a>
+                         <a href="/homepage">Home</a>
+                         <a href="#" class="heading">HealthGuardian</a>
+                         <img src="{{url_for('static', filename='logo.png')}}" width="50" height="50" style="float: left; border-radius: 50%;">
+                    </div>
+                    <hr class="new5">
+                    <section>
+                         <div class="row">
+                              <h1>Our Team</h1>
+                         </div>
+                         <div class="row">
+                              <div class="column" style="margin-left: 250px">
+                                   <div class="card">
+                                        <div class="img-container">
+                                             <img src="{{url_for('static', filename='girl1.png')}}">
+                                        </div>
+                                        <h3>Isabella Priya</h3>
+                                        <p>Founder</p>
+                                        <div class="icons">
+                                             <a href="#"><i class="fab fa-twitter"></i></a>
+                                             <a href="https://www.linkedin.com/in/isabella-priya-p-j/"><i class="fab fa-linkedin"></i></a>
+                                             <a href="#"><i class="fab fa-instagram"></i></a>
+                                             <a href="#"><i class="fas fa-envelope"></i></a>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="column">
+                                   <div class="card">
+                                        <div class="img-container">
+                                             <img src="{{url_for('static', filename='girl2.png')}}">
+                                        </div>
+                                        <h3>Tanushree</h3>
+                                        <p>Founder</p>
+                                        <div class="icons">
+                                             <a href="#"><i class="fab fa-twitter"></i></a>
+                                             <a href="#"><i class="fab fa-linkedin"></i></a>
+                                             <a href="#"><i class="fab fa-instagram"></i></a>
+                                             <a href="#"><i class="fas fa-envelope"></i></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </section>
+               </div>
+          </div>
+     </body>
+</html>
