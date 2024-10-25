@@ -61,9 +61,9 @@
                <div class="form-row">
                     <div class="input-data">
                          <label for="specialization" style="margin-left: 100px;">Select Specialization</label>
-                         <select id="specialization" name="specialization" style="padding: 10px 50px; margin-left: 300px; border: none;font-size: 17px;border-bottom: 2px solid rgba(0,0,0, 0.12);">
+                         <select id="specialization" name="specialization" style="padding: 10px 50px; margin-left: 300px; border: none; font-size: 17px; border-bottom: 2px solid rgba(0,0,0, 0.12);">
                               {% for item in info_table %}
-                                   <option value="{{item[3]}}">{{item[3]}}</option>
+                                   <option value="{{item['Specialist']}}">{{item['Specialist']}}</option>
                               {% endfor %}
                          </select>
                     </div>
