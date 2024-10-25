@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background: #252836;
+}
+
+.chatBot {
+  border: 3px solid #ff2770;
+  border-radius: 10px;
+  margin: 50px auto;
+  overflow: hidden;
+  width: 500px;
+  overflow-y: hidden;
+  height: 600px;
+  background-color: #fff;
+  background-image: url(gfg-gg-logo.svg);
+  background-size: contain;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+header {
+  background-color: black;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 7px 7px 0 0;
+}
+
+header h2 {
+  color: #fff;
+  margin: 0;
+}
+
+.chatbox {
+  padding: 15px;
+  list-style: none;
+  overflow-y: auto;
+  height: 450px;
+}
+
+.chatbox li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.chat p {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.chat-incoming {
+  justify-content: flex-start;
+}
+
+.chat-outgoing {
+  justify-content: flex-end;
+}
+
+.chat-incoming p {
+  background-color: #eaeaea;
+  color: black;
+  margin-left: 10px;
+}
+
+.chat-incoming img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-outgoing p {
+  background-color: #eaeaea;
+  color: black;
+  align-self: flex-end;
+}
+
+.chat-input {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-input textarea {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  resize: none;
+  outline: none;
+  background-color: #dcdcdc85;
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+}
+
+#cross {
+  float: right;
+  position: relative;
+  top: -38px;
+  left: -15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bolder;
+  font-size: 28px;
+}
+
+#cross:hover {
+  color: red;
+  transition: all .5s;
+}
+
+.chatbox .chat p.error {
+  color: #ffffff;
+  background-color: #ff3737e8;
+}
+
+#sendBTN {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 7px;
+  background-color: black;
+  cursor: pointer;
+  color: white;
+  margin-left: 10px;
+}
+
+#sendBTN:hover {
+  background-color: #ff2770;
+  transition: background-color 0.3s;
+}
+
+.lastMessage {
+  margin-top: 50px;
+  font-size: 35px;
+  font-weight: 600;
+  color: black;
+  margin-left: 550px;
+}
