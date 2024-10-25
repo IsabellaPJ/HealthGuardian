@@ -1,6 +1,5 @@
 import pickle
 from flask import *
-import mysql.connector
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 import pandas as pd
@@ -19,9 +18,6 @@ stemmer= SnowballStemmer(language= 'english')
 nltk.download('stopwords')
 
 app = Flask(__name__)
-
-connection=mysql.connector.connect(host='localhost', port='3306', database='healthguidance', user='root', password='')
-cursor=connection.cursor()
 
 cred = credentials.Certificate("firebase_key.json")  
 firebase_admin.initialize_app(cred)
